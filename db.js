@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import _ from 'lodash';
 import Faker from 'faker';
 //might need to install pg... i think i have that globally?, if something is not working, that might be it
-//also maybe double check that you can use import syntax
+//also maybe double check that you can use import syntax --> seems that this is what babel-cli is for!
 
 const Conn = new Sequelize(
   'graphql',
@@ -37,7 +37,7 @@ const Post = Conn.define('post', {
     allowNull: false
   },
   content: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false
   }
 });
@@ -56,7 +56,7 @@ Conn.sync({force: true})
     })
     .then((person) => {
       person.createPost({
-        title: `Sample post by ${person.firstName}`,
+        title: `Sample post by ${person.firstName} ${person.lastName}`,
         content: Faker.lorem.paragraph()
       })
     })
