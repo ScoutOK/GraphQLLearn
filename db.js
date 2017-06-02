@@ -1,5 +1,8 @@
 import Sequelize from 'sequelize';
+import _ from 'lodash';
+import Faker from 'faker';
 //might need to install pg... i think i have that globally?, if something is not working, that might be it
+//also maybe double check that you can use import syntax
 
 const Conn = new Sequelize(
   'graphql',
@@ -41,3 +44,23 @@ const Post = Conn.define('post', {
 
 Person.hasMany(Post);
 Post.belongsTo(Person);
+
+//seed the database with a bunch of stuff, the npm module faker is perdy cool!
+Conn.sync({force: true})
+.then(() => {
+  _.times(10, () => {
+    Person.create({
+      firstName: Faker.name.firstName(),
+      lastName: Faker.name.lastName(),
+      email: Faker.internet.email()
+    })
+    .then((person) => {
+      person.createPost({
+        title: `Sample post by ${person.firstName}`,
+        content: Faker.lorem.paragraph()
+      })
+    })
+  })
+})
+
+export default Conn
