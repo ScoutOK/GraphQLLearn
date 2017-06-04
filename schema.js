@@ -36,7 +36,7 @@ const Person = new GraphQLObjectType({
         }
       },
       posts:  {
-        type: Post,
+        type: new GraphQLList(Post),
         resolve(person) {
           return person.getPosts();
         }
@@ -66,6 +66,12 @@ const Post = new GraphQLObjectType({
         type: GraphQLString,
         resolve(post) {
           return post.content
+        }
+      },
+      person: {
+        type: Post,
+        resolve(post) {
+          post.getPerson();
         }
       }
     }
