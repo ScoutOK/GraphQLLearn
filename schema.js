@@ -1,4 +1,9 @@
-import graphql, {GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLSchema} from 'graphql';
+import {GraphQLObjectType, 
+  GraphQLString, 
+  GraphQLInt,
+  GraphQLList, 
+  GraphQLSchema} from 'graphql';
+
 import db from './db';
 
 const Person = new GraphQLObjectType({
