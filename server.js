@@ -1,5 +1,5 @@
 import Express from 'express';
-import Graphttp from 'express-graphgl';
+import Graphttp from 'express-graphql';
 
 import Schema from './schema';
 

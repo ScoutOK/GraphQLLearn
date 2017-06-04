@@ -84,6 +84,12 @@ const Query = new GraphQLObjectType({
         resolve(root, args) {
           return db.models.person.findAll({where: args})
         }
+      },
+      post: {
+        type: new GraphQLSchema(Post),
+        resolve(root, args) {
+          return db.models.post.findAll({where: args})
+        }
       }
     }
   }
